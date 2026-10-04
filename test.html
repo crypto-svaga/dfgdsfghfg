@@ -11,6 +11,8 @@
     </audio>
     <button id="volUp">Громче</button>
     <script>
+        const audio = document.getElementById("player")
+        audio.volume = 0.1
         document.getElementById('volUp').addEventListener('click', function() {
           audio.volume = Math.min(audio.volume + 0.1, 1);
         });
