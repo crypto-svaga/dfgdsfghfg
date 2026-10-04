@@ -9,6 +9,7 @@
     <audio id="player" loop preload="auto" controls>
         <source src="fallen-angel.m4a" type="audio/mp4">
     </audio>
+    <button id="volUp">Громче</button>
     <script>
         document.getElementById('volUp').addEventListener('click', function() {
           audio.volume = Math.min(audio.volume + 0.1, 1);
