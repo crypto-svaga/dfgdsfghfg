@@ -6,17 +6,26 @@
     <title>Document</title>
 </head>
 <body>
-    <audio id="player" loop preload="auto" controls>
+    <audio id="player" loop preload="auto" playsinline>
         <source src="fallen-angel.m4a" type="audio/mp4">
     </audio>
-    <button id="volUp">Громче</button>
-    <button id="p">fjfjjf</button>
+    <button id="volume">set volume</button>
     <script>
-        const audio = document.getElementById("player")
-        audio.volume = 0.1
-        document.getElementById('volUp').addEventListener('click', function() {
-          audio.volume = Math.min(audio.volume + 0.1, 1);
-        });
+        const audio = document.querySelector('audio'); // или new Audio(src)
+
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioContext();
+
+        const source = ctx.createMediaElementSource(audio);
+        const gainNode = ctx.createGain();
+
+        source.connect(gainNode);
+        gainNode.connect(ctx.destination);
+
+        function setVolume(v) {
+            gainNode.gain.value = v;
+        }
+        setVolume(0.1);
     </script>
 </body>
 </html>
